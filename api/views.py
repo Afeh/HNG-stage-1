@@ -42,7 +42,7 @@ def greeting_api(request):
 	# client_ip = request.META.get('REMOTE_ADDR')
 	# client_ip_address = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
 	# client_ip = client_ip_address['ip']
-	client_ip = request.headers.get('X-Real-IP')
+	client_ip = request.META.get('HTTP_X_REAL_IP')
 	# print(client_ip)
 
 
