@@ -25,7 +25,7 @@ def get_temperature(location):
 
 
 def get_location(ip_address):
-	url = f'https://api.ipgeolocation.io/ipgeo?apiKey={settings.API_KEY2}&ip={ip_address}'
+	url = f'https://api.ipgeolocation.io/ipgeo?apiKey={settings.API_KEY2}&ip={str(ip_address)}'
 	repsonse_data = requests.get(url).json()
 
 	city = repsonse_data['city']
@@ -36,9 +36,11 @@ def get_location(ip_address):
 @api_view(['GET'])
 def greeting_api(request):
 	visitor_name = request.GET.get('visitor_name', 'Mark')
-	client_ip = request.META.get('REMOTE_ADDR')
-	# client_ip = '102.89.22.166'
-	# print(client_ip)
+	# client_ip = request.META.get('REMOTE_ADDR')
+	client_ip_address = requests.get('https://api.ipify.org?format=json').json()
+	client_ip = client_ip_address['ip']
+	print(client_ip)
+
 
 	location = get_location(client_ip)
 
