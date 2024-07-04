@@ -28,9 +28,12 @@ def get_location(ip_address):
 	url = f'https://api.ipgeolocation.io/ipgeo?apiKey={settings.API_KEY2}&ip={str(ip_address)}'
 	repsonse_data = requests.get(url).json()
 
-	city = repsonse_data['city']
+	city_2 = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
 
-	return city
+	city2 = city_2['city']
+	# city = repsonse_data['city']
+	print(city2)
+	return city2
 
 
 @api_view(['GET'])
