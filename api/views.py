@@ -39,9 +39,9 @@ def get_location(ip_address):
 def greeting_api(request):
 	visitor_name = request.GET.get('visitor_name', 'Mark')
 	# client_ip = request.META.get('REMOTE_ADDR')
-	client_ip_address = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
-	client_ip = client_ip_address['ip']
-	# client_ip = request.META.get('HTTP_X_REAL_IP')
+	# client_ip_address = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
+	# client_ip = client_ip_address['ip']
+	client_ip = request.META.get('HTTP_X_REAL_IP')
 	print(client_ip)
 
 
