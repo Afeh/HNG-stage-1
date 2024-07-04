@@ -28,25 +28,24 @@ def get_location(ip_address):
 	url = f'https://api.ipgeolocation.io/ipgeo?apiKey={settings.API_KEY2}&ip={str(ip_address)}'
 	repsonse_data = requests.get(url).json()
 
-	city_2 = requests.get('https://ipinfo.io/{ip_address}?token=5f368389d189b7').json()
+	city_2 = requests.get(f'https://ipinfo.io/{ip_address}?token=5f368389d189b7').json()
 
-	city2 = city_2['city']
+	city2 = city_2["city"]
 	# city = repsonse_data['city']
-	print(city2)
 	return city2
 
 
 @api_view(['GET'])
 def greeting_api(request):
 	visitor_name = request.GET.get('visitor_name', 'Mark')
-	client_ip = request.META.get('REMOTE_ADDR')
-	# client_ip_address = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
-	# client_ip = client_ip_address['ip']
+	# client_ip = request.META.get('REMOTE_ADDR')
+	client_ip_address = requests.get('https://ipinfo.io/?token=5f368389d189b7').json()
+	client_ip = client_ip_address['ip']
 	# client_ip = request.META.get('HTTP_X_REAL_IP')
-	# print(client_ip)
+	print(client_ip)
 
 
-	location = get_location(client_ip)
+	location = get_location(str(client_ip))
 
 	temperature = get_temperature(location)
 
