@@ -36,9 +36,9 @@ def get_location(ip_address):
 @api_view(['GET'])
 def greeting_api(request):
 	visitor_name = request.GET.get('visitor_name', 'Mark')
-	client_ip = request.META.get('REMOTE_ADDR')
-	# client_ip = '102.89.22.166'
-	# print(client_ip)
+# 	client_ip = request.META.get('REMOTE_ADDR')
+	client_ip = '102.89.22.166'
+# 	print(client_ip)
 
 	location = get_location(client_ip)
 
