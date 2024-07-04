@@ -39,7 +39,7 @@ def greeting_api(request):
 	# client_ip = request.META.get('REMOTE_ADDR')
 	client_ip_address = requests.get('https://api.ipify.org?format=json').json()
 	client_ip = client_ip_address['ip']
-	print(client_ip)
+	# print(client_ip)
 
 
 	location = get_location(client_ip)
